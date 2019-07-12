@@ -1,0 +1,6 @@
+library(waffle)
+#Give Title
+#Decide proportions and row numbers 
+#Use Hex for desired colours
+waffle(c('Goals Involving Sterling and Aguero = 70% ' = 70, 'Goals Involving Others= 30% ' = 30), rows = 10, colors = c("#6CABDD", "#D3D3D3"),
+ , legend_pos="bottom")
