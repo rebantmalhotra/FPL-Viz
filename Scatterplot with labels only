@@ -1,0 +1,5 @@
+library(ggplot2)
+library(ggthemes)
+ggplot(xG_and_xGA, aes(x=xG, y=xGA))+ geom_text(aes(label = Team), check_overlap = TRUE) + 
+xlab("Expected Goals") + scale_y_reverse()+
+   ylab("Expected Goals Against") + theme_wsj()
