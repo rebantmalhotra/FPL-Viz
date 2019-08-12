@@ -1,0 +1,27 @@
+library(fplscrapR)
+library(dplyr)
+library(ggplot2)
+df <- get_player_info(season=)
+
+df %>% 
+  filter(minutes >= 70) %>% # filtering for players with more than 30 points scored
+  mutate(pp90 = total_points / minutes * 90) %>% # creating the 'pp90' variable
+  select(playername,pp90) %>% # selecting player name and pp90 for our table
+  arrange(-pp90) %>% # ordering (arranging) by pp90
+  slice(1:20) # showing just the top20
+  
+  
+  OR 
+  
+  
+library(fplscrapR)
+library(dplyr)
+library(ggplot2)
+df <- get_player_info(season=)
+
+df %>% 
+  filter(total_points >= 30) %>% # filtering for players with more than 30 points scored
+  mutate(pp90 = total_points / minutes * 90) %>% # creating the 'pp90' variable
+  select(playername,pp90) %>% # selecting player name and pp90 for our table
+  arrange(-pp90) %>% # ordering (arranging) by pp90
+  slice(1:20) # showing just the top20
