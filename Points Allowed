@@ -1,16 +1,17 @@
 library(fplscrapR)
 
 df <- get_player_details(season =)
+View(df)
 library(dplyr)
 library(ggplot2)
 df %>% 
-  filter(round %in% 1:2) %>% # filter out the gameweeks we are interested in
+  filter(round %in% 3:3) %>% # filter out the gameweeks we are interested in
   group_by(opponent_team) %>% # transformation to group and summarize the total_points (scored by a given player in a given round) by the opponent ('opponent_team') variable level
   summarize(sum(total_points)) %>% 
   ggplot(aes(x=reorder(opponent_team,`sum(total_points)`),y=`sum(total_points)`,fill=factor(opponent_team))) + 
-  geom_col(colour="black") +
-  theme_bw() +
+  geom_col() + 
+  theme_fivethirtyeight() +
   coord_flip() +
   scale_x_discrete(labels=c("1"="ARS","2"="AVL","3"="BOU","4"="BHA","5"="BUR","6"="CHE","7"="CRY","8"="EVE","9"="LEI","10"="LIV","11"="MCI","12"="MUN","13"="NEW","14"="NOR","15"="SHU","16"="SOU","17"="TOT","18"="WAT","19"="WHU","20"="WOL")) + # here we transform the numbered team labels to the FPL short letter names
-  labs(x="Team",y="Total FPL points allowed",title="Alternative FDR ranking - by total FPL points allowed",subtitle="Season 2018/2019 - Gameweeks 1-25",caption=paste("Data from fplscrapR | ",Sys.Date(),sep="")) +
-  scale_fill_manual(values=c("1"="#EF0107","2"="#000000","3"="#0057B8","4"="#6C1D45","5"="#0070B5","6"="#034694","7"="#1B458F","8"="#003399","9"="#FFFFFF","10"="#0E63AD","11"="#003090","12"="#C8102E","13"="#6CABDD","14"="#DA291C","15"="#241F20","16"="#D71920","17"="#132257","18"="#FBEE23","19"="#7A263A","20"="#FDB913"),guide=F) # here we add the team-specific colours to the plot
+  labs(x="Team",y="Total FPL points allowed",title="FPL Points Allowed",subtitle="Season 2019/2020 - Gameweeks 1-25",caption=paste("Data from fplscrapR | ",Sys.Date(),sep="")) +
+  scale_fill_manual(values=c("1"="#FFA500","2"="#2800D7","3"="#2800D7","4"="#2800D7","5"="#2800D7","6"="#FFA500","7"="#2800D7","8"="#2800D7","9"="#2800D7","10"="#FFA500","11"="#FFA500","12"="#FFA500","13"="#2800D7","14"="#2800D7","15"="#2800D7","16"="#2800D7","17"="#FFA500","18"="#2800D7","19"="#2800D7","20"="#2800D7"),guide=F) # here we add the team-specific colours to the plot
