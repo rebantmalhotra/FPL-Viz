@@ -1,0 +1,19 @@
+library(fplscrapR)
+library(formattable)
+customGreen0 = "#DeF7E9"
+customGreen = "#71CA97"
+ab <- get_player_info(season=)
+goalkeeper <- ab %>% 
+  filter(element_type %in% 3) %>%
+  select(web_name,total_points, goals_scored, assists, bonus, bps) %>% # selecting the relevant columns
+  group_by(web_name) %>% # transformation to group and summarize the performance at the 'playername' variable level
+  summarize_all(sum) %>% 
+  arrange(-total_points) %>%  # ordering (arranging) the table by top involvements
+  slice(1:10) # showing the top20 only
+formattable(goalkeeper, align =c("l","c","c","c","c"), list(
+  `web_name` = formatter("span", style = ~ style(color = "grey",font.weight = "bold")), 
+  `total_points`= color_tile(customGreen0, customGreen),
+  `goals_scored`= color_tile(customGreen0, customGreen),
+  `assists`= color_tile(customGreen0, customGreen),
+  `bonus`= color_tile(customGreen0, customGreen),
+  `bps`= color_tile(customGreen0, customGreen)), caption = "Top 10 Midfielders in Order of Points")
