@@ -1,0 +1,9 @@
+library(ggplot2)
+library(ggrepel)
+ggplot(Player, aes(Shots, xGPShot, color = xG)) + 
+  geom_point(shape = 16, size = 4, alpha = 1)+ theme_clean() + ylab("xG Per Shot") + 
+  scale_color_gradient(low = "#FFA17F", high = "#00223E") + 
+  geom_text_repel(aes(label = Name), size = 2.5 , nudge_x = 1.2) + ggtitle("Top 60 Players by xG from GW1-13") + 
+  theme(plot.title = element_text(size = 20, family = "Trebuchet MS", color = "#808080")) + 
+  labs (caption=paste("Data: Fantasy Football Hub | By @RebantMalhotra"))
+ggsave("player.png", dpi = 500)
